@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import Home from './components/home/Home'
+import NotFound from './components/common/NotFound'
 
 
 const Routes = () => (
@@ -8,7 +9,7 @@ const Routes = () => (
 		<Route path='/' exact component={Home} />
 
 		{/* ELSE */}
-		{/* <Route path='*' exact component={NotFound} /> */}
+		<Route path='*' exact component={NotFound} />
 	</Switch>
 )
 

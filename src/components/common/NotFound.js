@@ -1,6 +1,6 @@
 import React from 'react';
 
 export default () => 
-	<div>
-		<p>lorem ipsum</p>
-	</div>
+  <div>
+    <p>Not found</p>
+  </div>
