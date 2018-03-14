@@ -1,9 +1,9 @@
 import React from 'react';
-import TrackerList from '../trackers/TrackerList'
+import TrackerContainer from '../trackers/TrackerContainer'
 
 
 export default () => 
 	<div>
 		<p>lorem ipsum</p>
-		<TrackerList />
+		<TrackerContainer />
 	</div>

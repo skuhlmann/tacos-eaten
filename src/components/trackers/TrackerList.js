@@ -20,7 +20,7 @@ class TrackerList extends Component {
       })
     })
 
-    trackerApi.all(collection => {
+    trackerApi.all().onSnapshot(collection => {
       let trackers = collection.docs.map(doc => {
         let tracker = doc.data()
         tracker.id = doc.id
@@ -32,16 +32,12 @@ class TrackerList extends Component {
   }
 
   buildList() {
-    console.log('im hit')
-    console.log(this.state)
     return this.state.allTrackers.map(tracker => {
       return (
         <p key={tracker.id}>whaaaa</p>
       )
     })
-
   }
-
 
   render() {
     let trackerList = this.buildList()

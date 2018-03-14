@@ -4,7 +4,6 @@ import { db } from '../config/firebase'
 class trackerApi {
   all(callback) {
     return db.collection('tacos')
-      .onSnapshot(callback);
   }
 
   find(id) {
