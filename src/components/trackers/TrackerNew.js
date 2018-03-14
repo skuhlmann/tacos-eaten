@@ -7,19 +7,22 @@ class TrackerNew extends Component {
     this.state = {
       name: '',
       count: '',
-      date: new Date()
+      date: new Date().toISOString().split('T')[0]
     }
+
+    console.log(this.state.date)
   }
 
   handleChange = (e) => {
-    let update = {}
-    update[e.target.name] = e.target.value
-
-    this.setState(update)
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    //going to need to deal with the date format
 
     let newTracker = {
       name: this.state.name
@@ -28,7 +31,6 @@ class TrackerNew extends Component {
     this.setState({name: ''}, () => {
       trackerApi.add(newTracker)
     })
-
 
     //this needs to create the tracker doc and the collection of entries
     //and disable the form
@@ -41,15 +43,25 @@ class TrackerNew extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           I had 
-          <input type="number" 
+          <input type="number"
+            placeholder="33"
             name="count"
             value={this.state.count} 
             onChange={this.handleChange}/>
         </label>
         <label>
           <input type="text" 
+            placeholder="Tacos"
             name="name"
             value={this.state.name} 
+            onChange={this.handleChange}/>
+        </label>
+
+        <label>
+          on
+          <input type="date" 
+            name="date"
+            value={this.state.date} 
             onChange={this.handleChange}/>
         </label>
 
