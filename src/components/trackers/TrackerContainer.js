@@ -6,13 +6,28 @@ class TrackerContainer extends Component {
   state = { loading: true }
 
   componentDidMount() {
-    trackerApi.find('X71KpGAD40LX5DZqv1af')
-      .then(tracker => {
+  // one time
+  //   trackerApi.find('X71KpGAD40LX5DZqv1af')
+  //     .then(tracker => {
+  //       this.setState({
+  //         loading: false,
+  //         tracker
+  //       })
+  //     })
+
+  //listening
+    this.apiUnsub = trackerApi.get('X71KpGAD40LX5DZqv1af')
+      .onSnapshot(tracker => {
         this.setState({
           loading: false,
-          tracker
+          tracker: tracker.data()
         })
       })
+  }
+
+  componentWillUnmount() {
+    //if listening
+    this.apiUnsub();
   }
 
   render() {

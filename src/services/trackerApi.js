@@ -12,6 +12,10 @@ class trackerApi {
       .then(doc => doc.data())
   }
 
+  get(id) {
+    return db.collection('tacos').doc(id)
+  }
+
   add(tracker) {
     // return
     db.collection('tacos').add(tracker)
@@ -31,4 +35,3 @@ class trackerApi {
 }
 
 export default new trackerApi();
-
