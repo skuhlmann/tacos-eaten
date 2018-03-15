@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import trackerApi from '../../services/trackerApi'
+import api from '../../services/api'
 
 class TrackerNew extends Component {
   constructor() {
@@ -29,7 +29,7 @@ class TrackerNew extends Component {
     }
 
     this.setState({name: ''}, () => {
-      trackerApi.add(newTracker)
+      api.trackers.add(newTracker)
     })
 
     //this needs to create the tracker doc and the collection of entries

@@ -1,7 +1,7 @@
 import { db } from '../config/firebase'
 
 
-class trackerApi {
+class TrackerApi {
   all(callback) {
     return db.collection('tacos')
   }
@@ -17,31 +17,33 @@ class trackerApi {
   }
 
   add(tracker) {
-    // return
     db.collection('tacos').add(tracker)
   }
   
   edit(tracker) {
-    // return
     db.collection('tacos').doc(tracker.id).set(tracker)
   }
   
   delete(tracker) {
-    // return
     db.collection('tacos')
       .doc(tracker.id)
       .delete()
   }
-
-  allEntries(trackerId) {
-    return db.collection('tacos')
-     .doc(trackerId)
-     .collection('entry')
-  }
-
-  // addEntry(tracker, entry) {
-  //   db.collection('tacos').doc()
-  // }
 }
 
-export default new trackerApi();
+class EntryApi {
+  all(trackerId) {
+    return db.collection('tacos')
+      .doc(trackerId)
+      .collection('entry')
+  }
+}
+
+class Api {
+  constructor() {
+    this.trackers = new TrackerApi();
+    this.entries = new EntryApi();
+  }
+}
+
+export default new Api();

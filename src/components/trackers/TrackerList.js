@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import trackerApi from '../../services/trackerApi'
+import api from '../../services/api'
 
 class TrackerList extends Component {
   
