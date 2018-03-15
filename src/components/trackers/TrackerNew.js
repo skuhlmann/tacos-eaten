@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../services/api'
+import trackerBuilder from '../../services/trackerBuilder'
 
 class TrackerNew extends Component {
   constructor() {
@@ -7,10 +8,12 @@ class TrackerNew extends Component {
     this.state = {
       name: '',
       count: '',
-      date: new Date().toISOString().split('T')[0]
+      date: this.buildDate()
     }
+  }
 
-    console.log(this.state.date)
+  buildDate() {
+    return new Date().toISOString().split('T')[0]
   }
 
   handleChange = (e) => {
@@ -22,18 +25,22 @@ class TrackerNew extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    //going to need to deal with the date format
-
-    let newTracker = {
+    let newTracker = trackerBuilder.addMetaData({
       name: this.state.name
-    }
-
-    this.setState({name: ''}, () => {
-      api.trackers.add(newTracker)
     })
 
-    //this needs to create the tracker doc and the collection of entries
-    //and disable the form
+    let newEntry = {
+      count: this.state.count,
+      date: this.state.date,
+    }
+
+    this.setState({
+      name: '',
+      count: '',
+      date: this.buildDate(),
+    }, () => {
+      api.newTracker(newTracker, newEntry)
+    })
   }
 
   render() {

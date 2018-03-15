@@ -17,7 +17,7 @@ class TrackerApi {
   }
 
   add(tracker) {
-    db.collection('tacos').add(tracker)
+    return db.collection('tacos').add(tracker)
   }
   
   edit(tracker) {
@@ -37,12 +37,28 @@ class EntryApi {
       .doc(trackerId)
       .collection('entry')
   }
+
+  add(trackerId, entry) {
+    return db.collection('tacos')
+      .doc(trackerId)
+      .collection('entry')
+      .add(entry)
+  }
 }
 
 class Api {
   constructor() {
     this.trackers = new TrackerApi();
     this.entries = new EntryApi();
+  }
+
+  newTracker(tracker, entry) {
+    this.trackers.add(tracker).then(doc => {
+      console.log(doc)
+      console.log(doc.id)
+      this.entries.add(doc.id, entry)
+
+    })
   }
 }
 

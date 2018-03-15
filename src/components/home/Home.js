@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TrackerContainer from '../trackers/TrackerContainer'
+// import TrackerContainer from '../trackers/TrackerContainer'
 import TrackerNew from '../trackers/TrackerNew'
 
 class Home extends Component {
@@ -8,9 +8,6 @@ class Home extends Component {
 		return (
 			<div>
 				<p>lorem ipsum</p>
-				<TrackerContainer />
-		
-				<hr />
 		
 				<TrackerNew />
 			</div>
