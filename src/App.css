@@ -14,6 +14,10 @@ body {
   font-size: 5vw;
 }
 
+.form__text--date {
+  text-align: center;
+}
+
 .form-row {
   margin-bottom: 20px;
 }

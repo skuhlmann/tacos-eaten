@@ -50,11 +50,11 @@ class TrackerNew extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <div className="form-row">
-          <div className="col-sm-2">
+          <div className="col-2">
             <label className="form__text">I ate </label>
           </div>
 
-          <div className="col-sm-3">
+          <div className="col-3">
             <input 
               className="form-control form__text"
               type="number"
@@ -64,7 +64,7 @@ class TrackerNew extends Component {
               onChange={this.handleChange}/>
           </div>
 
-          <div className="col-sm-7">
+          <div className="col-7">
             <input 
               className="form-control form__text"
               type="text" 
@@ -75,14 +75,14 @@ class TrackerNew extends Component {
           </div>
         </div>
 
-        <div className="form-row">
-          <div className="col-sm-2">
+        <div className="form-row justify-content-center">
+          <div className="col-2">
             <label className="form__text">on</label>
           </div>
 
-          <div className="col-sm-10">
+          <div className="col-7">
             <input 
-              className="form-control form__text"
+              className="form-control form__text form__text--date"
               type="date" 
               name="date"
               value={this.state.date} 
@@ -91,12 +91,11 @@ class TrackerNew extends Component {
         </div>
 
         <div className="form-row">
-          <div className="col-sm-12">
+          <div className="col-12">
             <input className="btn-lg btn-light" type="submit" value="Start Tracking" disabled={disableSubmit}/>
           </div>
         </div>
-
-        </form>
+      </form>
     )
   }
 
