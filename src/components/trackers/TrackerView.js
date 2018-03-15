@@ -25,7 +25,6 @@ class TrackerList extends Component {
 
   renderEntries() {
     return this.props.entries.map(entry => {
-      console.log(entry)
       return <p key={entry.id}>{entry.count}</p>
     })
   }

@@ -3,10 +3,15 @@ import api from '../../services/api'
 import TrackerView from './TrackerView'
 
 class TrackerContainer extends Component {
-  state = { loading: true }
+  constructor(props) {
+    super(props)
+    this.state = { loading: true }
+  }
 
   componentDidMount() {
-    this.apiUnsub = api.trackers.get('X71KpGAD40LX5DZqv1af')
+    const trackerId = this.props.match.params.id
+
+    this.apiUnsub = api.trackers.get(trackerId)
       .onSnapshot(tracker => {
 
         api.entries.all(tracker.id)

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TrackerContainer from '../trackers/TrackerContainer'
 import TrackerNew from '../trackers/TrackerNew'
 
+class Home extends Component {
 
-export default () => 
-	<div>
-		<p>lorem ipsum</p>
-		<TrackerContainer />
+	render() {
+		return (
+			<div>
+				<p>lorem ipsum</p>
+				<TrackerContainer />
+		
+				<hr />
+		
+				<TrackerNew />
+			</div>
+		)
+	}
+}
 
-		<hr />
-
-		<TrackerNew />
-	</div>
+export default Home
