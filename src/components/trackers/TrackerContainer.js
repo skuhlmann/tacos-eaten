@@ -18,9 +18,22 @@ class TrackerContainer extends Component {
   //listening
     this.apiUnsub = trackerApi.get('X71KpGAD40LX5DZqv1af')
       .onSnapshot(tracker => {
-        this.setState({
-          loading: false,
-          tracker: tracker.data()
+
+        console.log(tracker.id)
+
+        trackerApi.allEntries(tracker.id).onSnapshot(collection => {
+          console.log(collection)
+          let entries = collection.docs.map(doc => {
+            let entry = doc.data()
+            entry.id = doc.id
+            return entry
+          })
+
+          this.setState({
+            loading: false,
+            tracker: tracker.data(),
+            entries: entries
+          })
         })
       })
   }

@@ -12,13 +12,22 @@ class TrackerList extends Component {
 
   renderTracker() {
     const { name, slug } = this.props.tracker
+    const entries = this.renderEntries()
 
     return (
       <div>
         <h2>{name}</h2>
         <div>Slug: {slug}</div>
+        {entries}
       </div>
     )
+  }
+
+  renderEntries() {
+    return this.props.entries.map(entry => {
+      console.log(entry)
+      return <p key={entry.id}>{entry.count}</p>
+    })
   }
 
   render() {

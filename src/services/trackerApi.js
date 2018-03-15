@@ -32,6 +32,16 @@ class trackerApi {
       .doc(tracker.id)
       .delete()
   }
+
+  allEntries(trackerId) {
+    return db.collection('tacos')
+     .doc(trackerId)
+     .collection('entry')
+  }
+
+  // addEntry(tracker, entry) {
+  //   db.collection('tacos').doc()
+  // }
 }
 
 export default new trackerApi();
