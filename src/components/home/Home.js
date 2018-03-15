@@ -6,10 +6,8 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div>
-				<p>lorem ipsum</p>
-		
-				<TrackerNew />
+			<div className="home__content">
+					<TrackerNew />
 			</div>
 		)
 	}

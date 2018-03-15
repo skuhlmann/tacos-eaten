@@ -48,32 +48,55 @@ class TrackerNew extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          I had 
-          <input type="number"
-            placeholder="33"
-            name="count"
-            value={this.state.count} 
-            onChange={this.handleChange}/>
-        </label>
-        <label>
-          <input type="text" 
-            placeholder="Tacos"
-            name="name"
-            value={this.state.name} 
-            onChange={this.handleChange}/>
-        </label>
 
-        <label>
-          on
-          <input type="date" 
-            name="date"
-            value={this.state.date} 
-            onChange={this.handleChange}/>
-        </label>
+        <div className="form-row">
+          <div className="col-sm-2">
+            <label className="form__text">I ate </label>
+          </div>
 
-        <input type="submit" value="Submit" disabled={disableSubmit}/>
-      </form>
+          <div className="col-sm-3">
+            <input 
+              className="form-control form__text"
+              type="number"
+              placeholder="33"
+              name="count"
+              value={this.state.count} 
+              onChange={this.handleChange}/>
+          </div>
+
+          <div className="col-sm-7">
+            <input 
+              className="form-control form__text"
+              type="text" 
+              placeholder="Tacos"
+              name="name"
+              value={this.state.name} 
+              onChange={this.handleChange}/>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="col-sm-2">
+            <label className="form__text">on</label>
+          </div>
+
+          <div className="col-sm-10">
+            <input 
+              className="form-control form__text"
+              type="date" 
+              name="date"
+              value={this.state.date} 
+              onChange={this.handleChange}/>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="col-sm-12">
+            <input className="btn-lg btn-light" type="submit" value="Start Tracking" disabled={disableSubmit}/>
+          </div>
+        </div>
+
+        </form>
     )
   }
 

@@ -3,8 +3,7 @@ class trackerBuilder {
     const updatedTracker = Object.assign({
       slug: this.slugger(tracker.name)
     }, tracker) 
-    updatedTracker 
-
+    
     return updatedTracker
   }
 
@@ -16,4 +15,4 @@ class trackerBuilder {
   }
 }
 
-export default new trackerBuilder
+export default new trackerBuilder()
