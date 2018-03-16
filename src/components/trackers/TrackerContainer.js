@@ -23,9 +23,12 @@ class TrackerContainer extends Component {
             return entry
           })
 
+          let fmTracker = tracker.data()
+          fmTracker.id = tracker.id
+
           this.setState({
             loading: false,
-            tracker: tracker.data(),
+            tracker: fmTracker,
             entries: entries
           })
        })

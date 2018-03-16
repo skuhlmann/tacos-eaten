@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import api from '../../services/api'
-import trackerBuilder from '../../services/trackerBuilder'
 
-class TrackerNew extends Component {
-  constructor() {
-    super()
+class EntryNew extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
-      name: '',
       count: '',
       date: this.buildDate()
     }
@@ -25,26 +23,23 @@ class TrackerNew extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    let newTracker = trackerBuilder.addMetaData({
-      name: this.state.name
-    })
-
     let newEntry = {
       count: this.state.count,
       date: this.state.date,
     }
 
+    console.log(this.props.tracker.id)
+
     this.setState({
-      name: '',
       count: '',
       date: this.buildDate(),
     }, () => {
-      api.newTracker(newTracker, newEntry)
+      api.entries.add(this.props.tracker.id, newEntry)
     })
   }
 
   invalid() {
-    return this.state.name.length < 2 || this.state.count < 1
+    return this.state.count < 1
   }
 
   render() {
@@ -54,13 +49,13 @@ class TrackerNew extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <div className="form-row">
-          <div className="col-2">
-            <label className="form__text">I ate </label>
+          <div className="col-1">
+            <label className="form__text--entry">I ate </label>
           </div>
 
-          <div className="col-3">
+          <div className="col-1">
             <input 
-              className="form-control form__text"
+              className="form-control form__text--entry"
               type="number"
               placeholder="33"
               name="count"
@@ -68,36 +63,25 @@ class TrackerNew extends Component {
               onChange={this.handleChange}/>
           </div>
 
-          <div className="col-7">
-            <input 
-              className="form-control form__text"
-              type="text" 
-              placeholder="Tacos"
-              name="name"
-              value={this.state.name} 
-              onChange={this.handleChange}/>
-          </div>
-        </div>
-
-        <div className="form-row justify-content-center">
           <div className="col-2">
-            <label className="form__text">on</label>
+            <p className="form__text--entry"> more { this.props.tracker.name } on</p>
           </div>
 
-          <div className="col-7">
+          <div className="col-5">
             <input 
-              className="form-control form__text form__text--date"
+              className="form-control form__text--entry form__text--date"
               type="date" 
               name="date"
               value={this.state.date} 
               onChange={this.handleChange}/>
           </div>
+
+          <div className="col-3">
+            <input className="btn-lg btn-light form__btn" type="submit" value="Add" disabled={disableSubmit}/>
+          </div>
         </div>
 
         <div className="form-row">
-          <div className="col-12">
-            <input className="btn-lg btn-light form__btn" type="submit" value="Start Tracking" disabled={disableSubmit}/>
-          </div>
         </div>
       </form>
     )
@@ -105,4 +89,4 @@ class TrackerNew extends Component {
 
 }
 
-export default TrackerNew
+export default EntryNew

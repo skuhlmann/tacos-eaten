@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EntryNew from './EntryNew'
 
 
 class TrackerList extends Component {
@@ -19,6 +20,7 @@ class TrackerList extends Component {
         <h2>{name}</h2>
         <div>Slug: {slug}</div>
         {entries}
+        <EntryNew tracker={this.props.tracker} />
       </div>
     )
   }
