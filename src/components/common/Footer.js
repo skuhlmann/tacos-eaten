@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 export default () => 
   <footer className="footer">
@@ -8,7 +9,7 @@ export default () =>
         <i className="fas fa-certificate"></i>
         <i className="fas fa-certificate"></i>
         <i className="fas fa-certificate"></i>
-        <i className="fas fa-certificate"></i>
+        <Link to="/trackers">My Trackers</Link>
       </span>
     </div>
   </footer>

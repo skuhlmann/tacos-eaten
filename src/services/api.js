@@ -54,10 +54,7 @@ class Api {
 
   newTracker(tracker, entry) {
     this.trackers.add(tracker).then(doc => {
-      console.log(doc)
-      console.log(doc.id)
       this.entries.add(doc.id, entry)
-
     })
   }
 }

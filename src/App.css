@@ -1,5 +1,5 @@
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Inconsolata', monospace;
 }
 
 .home__content {
@@ -11,7 +11,8 @@ body {
 }
 
 .form__text {
-  font-size: 5vw;
+  padding-top: .375rem;
+  font-size: 4.5vw;
 }
 
 .form__text--date {
@@ -20,4 +21,8 @@ body {
 
 .form-row {
   margin-bottom: 20px;
+}
+
+.form__btn:disabled {
+  color: white;
 }

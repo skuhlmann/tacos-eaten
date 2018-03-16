@@ -43,8 +43,12 @@ class TrackerNew extends Component {
     })
   }
 
+  invalid() {
+    return this.state.name.length < 2 || this.state.count <= 1
+  }
+
   render() {
-    let disableSubmit = this.state.name.length < 2;
+    let disableSubmit = this.invalid()
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -92,7 +96,7 @@ class TrackerNew extends Component {
 
         <div className="form-row">
           <div className="col-12">
-            <input className="btn-lg btn-light" type="submit" value="Start Tracking" disabled={disableSubmit}/>
+            <input className="btn-lg btn-light form__btn" type="submit" value="Start Tracking" disabled={disableSubmit}/>
           </div>
         </div>
       </form>
