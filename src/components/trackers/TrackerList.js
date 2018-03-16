@@ -23,7 +23,7 @@ class TrackerList extends Component {
   
   buildList() {
     return this.props.trackers.map(tracker => {
-      let linkPath = `/tracker/${tracker.id}`
+      let linkPath = `/tracker/${tracker.slug}`
 
       return (
         <div key={tracker.id}>

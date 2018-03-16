@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-export default class TrackerLineChart extends Component {
+class TrackerLineChart extends Component {
   constructor(props) {
     super(props)
 
@@ -64,3 +64,5 @@ export default class TrackerLineChart extends Component {
     }
   }
 }
+
+export default TrackerLineChart

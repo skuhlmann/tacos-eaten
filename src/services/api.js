@@ -12,6 +12,17 @@ class TrackerApi {
       .then(doc => doc.data())
   }
 
+  search(query) {
+    const keyField = Object.keys(query)[0]
+
+    console.log(keyField)
+    console.log(query[keyField])
+
+    return db.collection('tacos')
+      .where(keyField, '==', query[keyField])
+      .get()
+  }
+
   get(id) {
     return db.collection('tacos').doc(id)
   }
@@ -53,8 +64,12 @@ class Api {
   }
 
   newTracker(tracker, entry) {
-    this.trackers.add(tracker).then(doc => {
+    return this.trackers.add(tracker).then(doc => {
       this.entries.add(doc.id, entry)
+
+      return doc.get().then(tracker => {
+        return tracker.data()
+      })
     })
   }
 }

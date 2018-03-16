@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import api from '../../services/api'
 import trackerBuilder from '../../services/trackerBuilder'
 
@@ -8,8 +9,12 @@ class TrackerNew extends Component {
     this.state = {
       name: '',
       count: '',
-      date: this.buildDate()
+      date: this.buildDate(),
+      redirectToTracker: false,
+      slug: ''
     }
+
+    this.submitting = false;
   }
 
   buildDate() {
@@ -24,6 +29,7 @@ class TrackerNew extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.submitting = true;
 
     let newTracker = trackerBuilder.addMetaData({
       name: this.state.name
@@ -34,21 +40,30 @@ class TrackerNew extends Component {
       date: this.state.date,
     }
 
-    this.setState({
-      name: '',
-      count: '',
-      date: this.buildDate(),
-    }, () => {
-      api.newTracker(newTracker, newEntry)
+    api.newTracker(newTracker, newEntry).then(res => {
+      console.log(res)
+      this.setState({
+        name: '',
+        count: '',
+        date: this.buildDate(),
+        slug: res.slug,
+        redirectToTracker: true,
+      })
     })
   }
 
   invalid() {
-    return this.state.name.length < 2 || this.state.count < 1
+    let invalidInput = this.state.name.length < 2 || this.state.count < 1
+    return this.submitting || invalidInput
   }
 
   render() {
-    let disableSubmit = this.invalid()
+    const disableSubmit = this.invalid()
+    const path = `/tracker/${this.state.slug}`
+
+    if (this.state.redirectToTracker) {
+      return <Redirect to={path} />;
+    }
 
     return (
       <form onSubmit={this.handleSubmit}>
