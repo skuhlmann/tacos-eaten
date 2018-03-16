@@ -11,10 +11,10 @@ class TrackerContainer extends Component {
   componentDidMount() {
     const trackerId = this.props.match.params.id
 
-    this.apiUnsub = api.trackers.get(trackerId )
+    this.trackerApiUnsub = api.trackers.get(trackerId )
     .onSnapshot(tracker => {
 
-      api.entries.all(tracker.id)
+      this.entryApiUnsub = api.entries.all(tracker.id)
         .onSnapshot(collection => {
 
           let entries = collection.docs.map(doc => {
@@ -37,6 +37,7 @@ class TrackerContainer extends Component {
 
   componentWillUnmount() {
     this.apiUnsub();
+    this.entryApiUnsub();
   }
 
   render() {

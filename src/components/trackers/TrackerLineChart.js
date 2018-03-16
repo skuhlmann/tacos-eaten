@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Line} from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 export default class TrackerLineChart extends Component {
   constructor(props) {
@@ -9,48 +9,29 @@ export default class TrackerLineChart extends Component {
   }
 
   componentDidMount() {
-    let entryData = this.buildData(this.props.entries)
-    let labels = this.buildLabels(this.props.entries)
-
-    let data = {
-      labels: labels,
-      datasets: [
-        {
-          label: 'label-prop',
-          fill: false,
-          lineTension: 0.1,
-          data: entryData
-        }
-      ]
-    }
-
-    this.setState({data: data})
+    this.setState({
+      data: this.buildData(this.props.entries)
+    })
   }
   
   componentWillReceiveProps(nextProps) {
-    let entryData = this.buildData(nextProps.entries)
-    let labels = this.buildLabels(nextProps.entries)
+    this.setState({
+      data: this.buildData(nextProps.entries)
+    })
+  }
 
-    let data = {
-      labels: labels,
+  buildData(entries) {
+    return {
+      labels: entries.map(entry => entry.date),
       datasets: [
         {
           label: 'label-prop',
           fill: false,
           lineTension: 0.1,
-          data: entryData
+          data: entries.map(entry => entry.count)
         }
       ]
     }
-    this.setState({data: data})
-  }
-
-  buildLabels(entries) {
-    return entries.map(entry => entry.date)
-  }
-
-  buildData(entries) {
-    return entries.map(entry => entry.count)
   }
 
   renderLoading() {
