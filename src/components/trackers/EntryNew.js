@@ -28,8 +28,6 @@ class EntryNew extends Component {
       date: this.state.date,
     }
 
-    console.log(this.props.tracker.id)
-
     this.setState({
       count: '',
       date: this.buildDate(),

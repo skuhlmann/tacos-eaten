@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import TrackerLineChart from './TrackerLineChart'
 import EntryNew from './EntryNew'
 
 
-class TrackerList extends Component {
+class TrackerView extends Component {
   renderLoading() {
     return <div>Loading...</div>
   }
@@ -18,6 +19,7 @@ class TrackerList extends Component {
     return (
       <div>
         <h2>{name}</h2>
+        <TrackerLineChart entries={this.props.entries} />
         <div>Slug: {slug}</div>
         {entries}
         <EntryNew tracker={this.props.tracker} />
@@ -42,4 +44,4 @@ class TrackerList extends Component {
   }
 }
 
-export default TrackerList
+export default TrackerView
