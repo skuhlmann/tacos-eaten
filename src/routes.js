@@ -10,7 +10,8 @@ const Routes = () => (
 	<Switch>
 		<Route path='/' exact component={Home} />
 		<Route path='/tracker/:id' exact component={TrackerContainer} />
-		<Route path='/trackers' exact component={ListContainer} />
+		{/* <Route path='/trackers' exact component={ListContainer} /> */}
+		<Route path='/trackers' exact component={() => (<ListContainer model='trackers' />)} />
 
 		{/* ELSE */}
 		<Route path='*' exact component={NotFound} />

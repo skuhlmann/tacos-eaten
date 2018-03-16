@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import api from '../../services/api'
 import TrackerList from './TrackerList'
 
@@ -9,7 +9,7 @@ class ListContainer extends Component {
   }
 
   componentDidMount() {
-    this.apiUnsub = api.trackers.all().onSnapshot(collection => {
+    this.apiUnsub = api[this.props.model].all().onSnapshot(collection => {
 
       let trackers = collection.docs.map(doc => {
         let tracker = doc.data()
@@ -28,8 +28,22 @@ class ListContainer extends Component {
     this.apiUnsub();
   }
 
+  renderList() {
+    if (this.props.model === 'trackers') {
+      return <TrackerList {...this.state} />
+    } else if (this.props.model === 'entries') {
+      // return <EntriesList {...this.state} />
+    }
+  }
+
   render() {
-    return <TrackerList {...this.state} />
+    const listType = this.renderList()
+
+    return (
+      <Fragment>
+        {listType}
+      </Fragment>
+    )
   }
 }
 
