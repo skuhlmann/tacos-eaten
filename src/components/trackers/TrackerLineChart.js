@@ -22,16 +22,24 @@ export default class TrackerLineChart extends Component {
 
   buildData(entries) {
     return {
-      labels: entries.map(entry => entry.date),
+      labels: this.sorted(entries).map(entry => entry.date),
       datasets: [
         {
-          label: 'label-prop',
+          label: this.props.title,
           fill: false,
           lineTension: 0.1,
-          data: entries.map(entry => entry.count)
+          data: this.sorted(entries).map(entry => entry.count)
         }
       ]
     }
+  }
+
+  sorted(entries) {
+    return entries.sort((a,b) => {
+      let aNum = parseInt(a.date.replace(/-/g, ''), 10)
+      let bNum = parseInt(b.date.replace(/-/g, ''), 10)
+      return aNum - bNum
+    })
   }
 
   renderLoading() {

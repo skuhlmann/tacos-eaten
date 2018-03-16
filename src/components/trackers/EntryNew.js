@@ -51,7 +51,7 @@ class EntryNew extends Component {
             <label className="form__text--entry">I ate </label>
           </div>
 
-          <div className="col-1">
+          <div className="col-2">
             <input 
               className="form-control form__text--entry"
               type="number"
@@ -65,7 +65,7 @@ class EntryNew extends Component {
             <p className="form__text--entry"> more { this.props.tracker.name } on</p>
           </div>
 
-          <div className="col-5">
+          <div className="col-4">
             <input 
               className="form-control form__text--entry form__text--date"
               type="date" 

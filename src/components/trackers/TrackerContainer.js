@@ -36,7 +36,7 @@ class TrackerContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.apiUnsub();
+    this.trackeraApiUnsub();
     this.entryApiUnsub();
   }
 

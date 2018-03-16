@@ -14,23 +14,15 @@ class TrackerView extends Component {
 
   renderTracker() {
     const { name, slug } = this.props.tracker
-    const entries = this.renderEntries()
 
     return (
       <div>
         <h2>{name}</h2>
-        <TrackerLineChart entries={this.props.entries} />
-        <div>Slug: {slug}</div>
-        {entries}
         <EntryNew tracker={this.props.tracker} />
+        <TrackerLineChart entries={this.props.entries} title={this.props.tracker.name}/>
+        <div>Slug: {slug}</div>
       </div>
     )
-  }
-
-  renderEntries() {
-    return this.props.entries.map(entry => {
-      return <p key={entry.id}>{entry.count}</p>
-    })
   }
 
   render() {
